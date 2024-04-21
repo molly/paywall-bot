@@ -11,5 +11,5 @@ class BlueskyTest(TestCase):
         cls.bsky.login()
 
     def test_get_nonexistent_post(self):
-        post = self.bsky.getPost("nonexistent", MOLLY_DID)
+        post = self.bsky.get_post("nonexistent", MOLLY_DID)
         assert post is None

@@ -49,8 +49,9 @@ def get_links(
     # Otherwise get the parent post, if there is one
     if notif["reason"] == "reply":
         try:
-            parent = bsky.getPost(notif.reply.parent.cid)
-            links = links + get_links_from_record(parent.value)
+            parent = bsky.get_parent(notif.reply.parent.uri)
+            if parent:
+                links = links + get_links_from_record(parent.thread.post.record)
         except AtProtocolError as e:
             logger.exception("Error getting parent post: %s", e)
             return links
