@@ -65,3 +65,8 @@ def notifications_worker(tasks: Queue, bsky: Bluesky, logger: logging.Logger):
         record = notif.record
         text = record.text.lower()
         to_archive = get_links(notif, bsky, logger)
+
+        # TODO Find command
+
+        for link in to_archive:
+            unpaywall(link)
